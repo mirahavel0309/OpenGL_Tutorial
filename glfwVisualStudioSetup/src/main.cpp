@@ -4,7 +4,7 @@
 
 #include <iostream>
 #include <openglErrorReporting.h>
-
+#include "Shader.h"
 
 float triangleData[] = {
 	0, 1, 0,      1, 0, 0,
@@ -65,9 +65,22 @@ int main()
 
 #pragma endregion
 
+#pragma region shader loading
+	Shader shader;
+
+	shader.loadShaderProgramFromFile("resources/myShader.vert",
+		"resources/myshader.frag");
+
+	shader.bind();
+#pragma endregion
 
 	while (!glfwWindowShouldClose(window))
 	{
+		// tell openGL that we resized our window
+		int w = 0, h = 0;
+		glfwGetWindowSize(window, &w, &h);
+		glViewport(0, 0, w, h);
+
 		glClear(GL_COLOR_BUFFER_BIT); 
 
 		glDrawArrays(GL_TRIANGLES, 0, 3);

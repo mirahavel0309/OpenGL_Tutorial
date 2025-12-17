@@ -57,7 +57,7 @@
     <ClCompile Include="..\dependences\stb_truetype\src\stb_truetype.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\LoadingShadersSourceCode\Shader.cpp">
+    <ClCompile Include="Shader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -65,7 +65,7 @@
     <ClInclude Include="include\openglErrorReporting.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\LoadingShadersSourceCode\shader.h">
+    <ClInclude Include="include\Shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

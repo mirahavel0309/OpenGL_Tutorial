@@ -159,7 +159,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\LoadingShadersSourceCode\Shader.cpp" />
     <ClCompile Include="..\dependences\gl2d\src\gl2d.cpp" />
     <ClCompile Include="..\dependences\gl2d\src\gl2dParticleSystem.cpp" />
     <ClCompile Include="..\dependences\GLAD\src\glad.c" />
@@ -172,12 +171,13 @@
     <ClCompile Include="..\dependences\imgui-docking\imgui\imgui_widgets.cpp" />
     <ClCompile Include="..\dependences\stb_image\src\stb_image.cpp" />
     <ClCompile Include="..\dependences\stb_truetype\src\stb_truetype.cpp" />
+    <ClCompile Include="Shader.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\openglErrorReporting.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\LoadingShadersSourceCode\shader.h" />
     <ClInclude Include="include\openglErrorReporting.h" />
+    <ClInclude Include="include\Shader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
