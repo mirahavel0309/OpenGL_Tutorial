@@ -94,11 +94,14 @@ int main()
 #pragma region shader loading
 	Shader shader;
 
-	shader.loadShaderProgramFromFile("resources/myShader.vert",
-		"resources/myshader.frag");
+	shader.loadShaderProgramFromFile("resources/myShader.vert", "resources/myshader.frag");
 
 	shader.bind();
+
+	GLint u_time = shader.getUniformLocation("u_time");
+
 #pragma endregion
+
 
 	while (!glfwWindowShouldClose(window))
 	{
@@ -108,6 +111,11 @@ int main()
 		glViewport(0, 0, w, h);
 
 		glClear(GL_COLOR_BUFFER_BIT); 
+
+		// make sure the shader is bound
+		shader.bind();
+
+		glUniform1f(u_time, (float)(clock()) / 100.f);
 
 		// bind the vao to specify the vertex buffer, index buffer, and the attributes
 		glBindVertexArray(vao);

@@ -171,7 +171,7 @@
     <ClCompile Include="..\dependences\imgui-docking\imgui\imgui_widgets.cpp" />
     <ClCompile Include="..\dependences\stb_image\src\stb_image.cpp" />
     <ClCompile Include="..\dependences\stb_truetype\src\stb_truetype.cpp" />
-    <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="src\Shader.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\openglErrorReporting.cpp" />
   </ItemGroup>
