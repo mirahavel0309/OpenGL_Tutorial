@@ -48,6 +48,14 @@ int main()
 	
 	enableReportGlErrors();
 
+#pragma region vao
+	GLuint vao = 0;
+	glGenVertexArrays(1, &vao);
+	glBindVertexArray(vao);
+
+#pragma endregion
+
+
 #pragma region buffer
 	// create the buffer
 	GLuint buffer = 0;
@@ -80,6 +88,8 @@ int main()
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 #pragma endregion
 
+	// it is good practice to unbind your vao after are done
+	glBindVertexArray(0);
 
 #pragma region shader loading
 	Shader shader;
@@ -99,6 +109,8 @@ int main()
 
 		glClear(GL_COLOR_BUFFER_BIT); 
 
+		// bind the vao to specify the vertex buffer, index buffer, and the attributes
+		glBindVertexArray(vao);
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_SHORT, nullptr);
 
 		glfwSwapBuffers(window);
