@@ -1,10 +1,10 @@
-#include "Shader.h"
+#include "shader.h"
 #include <string>
 #include <fstream>
 #include <iostream>
 
 //this allocates memory!
-char* readEntireFile(const char* source)
+char *readEntireFile(const char *source)
 {
 	std::ifstream file;
 	file.open(source);
@@ -20,7 +20,7 @@ char* readEntireFile(const char* source)
 	size = file.tellg();
 	file.seekg(0, file.beg);
 
-	char* fileContent = new char[size + 1] {};
+	char *fileContent = new char[size + 1] {};
 
 	file.read(fileContent, size);
 
@@ -29,12 +29,12 @@ char* readEntireFile(const char* source)
 	return fileContent;
 }
 
-bool Shader::loadShaderProgramFromFile(const char* vertexShaderPath,
-	const char* fragmentShaderPath)
+bool Shader::loadShaderProgramFromFile(const char *vertexShaderPath,
+	const char *fragmentShaderPath)
 {
 
-	char* vertexData = readEntireFile(vertexShaderPath);
-	char* fragmentData = readEntireFile(fragmentShaderPath);
+	char *vertexData = readEntireFile(vertexShaderPath);
+	char *fragmentData = readEntireFile(fragmentShaderPath);
 
 
 	if (vertexData == nullptr || fragmentData == nullptr)
@@ -55,7 +55,7 @@ bool Shader::loadShaderProgramFromFile(const char* vertexShaderPath,
 }
 
 
-GLint createShaderFromData(const char* data, GLenum shaderType)
+GLint createShaderFromData(const char *data, GLenum shaderType)
 {
 	GLuint shaderId = glCreateShader(shaderType);
 	glShaderSource(shaderId, 1, &data, nullptr);
@@ -66,7 +66,7 @@ GLint createShaderFromData(const char* data, GLenum shaderType)
 
 	if (!rezult)
 	{
-		char* message = 0;
+		char *message = 0;
 		int   l = 0;
 
 		glGetShaderiv(shaderId, GL_INFO_LOG_LENGTH, &l);
@@ -100,8 +100,8 @@ GLint createShaderFromData(const char* data, GLenum shaderType)
 }
 
 
-bool Shader::loadShaderProgramFromData(const char* vertexShaderData,
-	const char* fragmentShaderData)
+bool Shader::loadShaderProgramFromData(const char *vertexShaderData,
+	const char *fragmentShaderData)
 {
 	auto vertexId = createShaderFromData(vertexShaderData, GL_VERTEX_SHADER);
 
@@ -130,7 +130,7 @@ bool Shader::loadShaderProgramFromData(const char* vertexShaderData,
 
 	if (info != GL_TRUE)
 	{
-		char* message = 0;
+		char *message = 0;
 		int   l = 0;
 
 		glGetProgramiv(id, GL_INFO_LOG_LENGTH, &l);
@@ -167,15 +167,14 @@ void Shader::clear()
 	*this = {};
 }
 
-GLint Shader::getUniformLocation(const char* name)
+GLint Shader::getUniformLocation(const char *name)
 {
 	GLint rez = glGetUniformLocation(id, name);
-	
+
 	if (rez == -1)
 	{
 		std::cout << "Uniform error: " << name << "\n";
 	}
-	
+
 	return rez;
 }
-
