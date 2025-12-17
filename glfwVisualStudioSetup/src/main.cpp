@@ -7,11 +7,16 @@
 #include "Shader.h"
 
 float triangleData[] = {
-	0, 1, 0,      1, 0, 0,
-	-1, -1, 0,    0, 0, 0,
-	1, -1, 0,     0, 0, 1
+	 0.5, 0.5, 0,      1, 0, 0,
+	-0.5, 0.5, 0,	   0, 1, 0,
+	-0.5, -0.5, 0,     0, 0, 1,
+	 0.5, -0.5, 0,      0, 0, 1
 };
 
+unsigned short indices[] = {
+	0, 1, 2,
+	0, 2, 3
+};
 
 int main()
 {
@@ -65,6 +70,17 @@ int main()
 
 #pragma endregion
 
+#pragma region index buffer
+	// create the buffer
+	GLuint indexBuffer = 0;
+	glGenBuffers(1, &indexBuffer);
+
+	// send the data to the buffer
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuffer);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+#pragma endregion
+
+
 #pragma region shader loading
 	Shader shader;
 
@@ -83,7 +99,7 @@ int main()
 
 		glClear(GL_COLOR_BUFFER_BIT); 
 
-		glDrawArrays(GL_TRIANGLES, 0, 3);
+		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_SHORT, nullptr);
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
